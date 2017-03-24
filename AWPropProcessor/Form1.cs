@@ -16,5 +16,13 @@ namespace AWPropProcessor
         {
             InitializeComponent();
         }
+
+        public void Globals()
+        {
+
+        }
+
     }
+
+    
 }
