@@ -13,9 +13,20 @@ namespace AWPropProcessor
 {
     public partial class Form1 : Form
     {
+        private readonly BackgroundWorker worker;
+
         public Form1()
         {
             InitializeComponent();
+
+            // Create the background worker object, enable it to report progress,
+            // And then assign the mrhods that are called to do the work, handle the progress updates,
+            // And provide tasks that run when the background worker completes.
+            worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += Process;
+            worker.ProgressChanged += worker_ProgressChanged;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
 
             Status("Ready to begin. Please follow steps 1 through 8.");
 
@@ -31,7 +42,13 @@ namespace AWPropProcessor
             textBox9.Enabled = false;
             textBox10.Enabled = false;
             textBox5.Enabled = false;
-
+            checkBox8.Enabled = false;
+            checkBox5.Enabled = false;
+            checkBox7.Enabled = false;
+            checkBox6.Checked = true;
+            textBox6.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
         }
 
         public class Globals
@@ -41,6 +58,11 @@ namespace AWPropProcessor
 
 
         }
+
+
+
+
+
 
 
 
@@ -80,7 +102,123 @@ namespace AWPropProcessor
                 MessageBox.Show("Couldn't find the file! Try again.");
                 return;
             }
+
+            // Check the first line, to at least try and ensure it's a propdump (and to get propdump version)
+            string line1 = File.ReadLines(FileIn).First();
+
+
+
+            // Launch the BG worker process to do processing
+            worker.RunWorkerAsync();
+            button3.Enabled = false;
+
+
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                comboBox2.Enabled = true;
+                textBox4.Enabled = true;
+            }
+            if (checkBox1.Checked == false)
+            {
+                comboBox2.Enabled = false;
+                textBox4.Enabled = false;
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked == true)
+            {
+                comboBox3.Enabled = true;
+                textBox5.Enabled = true;
+            }
+            if (checkBox4.Checked == false)
+            {
+                comboBox3.Enabled = false;
+                textBox5.Enabled = false;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == true)
+            {
+                dateTimePicker1.Enabled = true;
+                dateTimePicker2.Enabled = true;
+            }
+            if (checkBox2.Checked == false)
+            {
+                dateTimePicker1.Enabled = false;
+                dateTimePicker2.Enabled = false;
+            }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == true)
+            {
+                checkBox8.Enabled = true;
+                textBox7.Enabled = true;
+                textBox8.Enabled = true;
+                textBox9.Enabled = true;
+                textBox10.Enabled = true;
+            }
+            if (checkBox3.Checked == false)
+            {
+                checkBox8.Enabled = false;
+                textBox7.Enabled = false;
+                textBox8.Enabled = false;
+                textBox9.Enabled = false;
+                textBox10.Enabled = false;
+            }
+        }
+
+        private void checkBox9_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox9.Checked == true)
+            {
+                button5.Enabled = true;
+            }
+            if (checkBox9.Checked == false)
+            {
+                button5.Enabled = false;
+            }
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox6.Checked == true)
+            {
+                checkBox5.Enabled = false;
+                checkBox7.Enabled = false;
+                textBox6.Enabled = false;
+                button4.Enabled = false;
+            }
+            if (checkBox6.Checked == false)
+            {
+                checkBox5.Enabled = true;
+                checkBox7.Enabled = true;
+                textBox6.Enabled = true;
+                button4.Enabled = true;
+            }
+        }
+
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            //lisStatus.Items.Add(e.UserState.ToString());
+        }
+
+        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            button3.Enabled = true;
+        }
+
+
     }
 
 
@@ -94,9 +232,17 @@ namespace AWPropProcessor
 
 
 
+    /* Understanding different versions of propdump files
+         * 
+         * Propdump v5: http://wiki.activeworlds.com/index.php?title=Propdump
+         * 
+         * Propdump v3: http://www.aw-europe.com/help/aw36/admin_propdump.html
+         * 
+         * Was there a propdump v4? According to propdump tool by Andras, there was.
+         
 
 
-
+    */
 
 
     /*

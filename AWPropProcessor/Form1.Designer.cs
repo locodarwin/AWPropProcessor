@@ -86,6 +86,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -298,6 +300,7 @@
             this.checkBox1.TabIndex = 9;
             this.checkBox1.Text = "Enable Filter";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label5
             // 
@@ -388,6 +391,7 @@
             this.checkBox2.TabIndex = 10;
             this.checkBox2.Text = "Enabled";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -513,6 +517,7 @@
             this.checkBox3.TabIndex = 11;
             this.checkBox3.Text = "Enabled";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // groupBox6
             // 
@@ -557,6 +562,7 @@
             this.checkBox4.TabIndex = 9;
             this.checkBox4.Text = "Enable Filter";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // label8
             // 
@@ -588,6 +594,8 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.button5);
+            this.groupBox7.Controls.Add(this.checkBox9);
             this.groupBox7.Controls.Add(this.button4);
             this.groupBox7.Controls.Add(this.textBox6);
             this.groupBox7.Controls.Add(this.label9);
@@ -645,12 +653,13 @@
             // 
             this.checkBox6.AutoSize = true;
             this.checkBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox6.Location = new System.Drawing.Point(10, 21);
+            this.checkBox6.Location = new System.Drawing.Point(10, 88);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(179, 17);
             this.checkBox6.TabIndex = 1;
             this.checkBox6.Text = "Convert to Propdump v5 (Latest)";
             this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // checkBox5
             // 
@@ -717,6 +726,28 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox9.Location = new System.Drawing.Point(9, 21);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(154, 17);
+            this.checkBox9.TabIndex = 6;
+            this.checkBox9.Text = "Transform Output (optional)";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(31, 41);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(123, 37);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "Transformations";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -819,6 +850,8 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.CheckBox checkBox9;
     }
 }
 
